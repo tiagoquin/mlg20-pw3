@@ -1,4 +1,6 @@
-# mlg20-pw3
+# Machine Learning 20: Practical work 3
+
+> Simon Mirkovitch, Tiago Povoa Quinteiro 
 
 ## Questions: point 1 et 2
 
