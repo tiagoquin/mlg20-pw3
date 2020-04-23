@@ -67,6 +67,10 @@ The more convincing was the configuration with 10 hidden neurons.
 
 In the graph above, we see that the **MSE** is also very low for 20 hidden neurons. 
 
+### Results
+
+#### Confusion Matrix
+
 In our first experiments, we obtained the following confusion matrix:
 
 ```
@@ -81,11 +85,32 @@ And with the final tuning we arrived at:
  [ 2. 34.]]
 ```
 
+- True positif 36.
+- False negative 0.
+- False positive 3.
+- True negative 33.
+
+Over 72 files read
+
+#### F-Score
+
+TODO: F1-Socre
+
 ## Part 2
 
 
 
 ## Part 3
+
+### In brief
+
+Since we have 3 categories, we couldn't use Female=1 and Male=-1.
+
+This time we have: Female=[**1**, -1, -1], Male=[-1, **1**, -1], Kid=[-1, -1, **1**]
+
+* We only used the natural voices.
+
+We tried with two features and it was clearly not enough. Here is the confusion matrix as an example:
 
 ```
 [[ 35.  31.  34.]
@@ -93,3 +118,29 @@ And with the final tuning we arrived at:
  [ 79.  26. 108.]]
 ```
 
+* Four features: Median, std, minimum and maximum
+
+* Normalized with MinMaxScaler from sklearn.preprocessing (between -1 and 1)
+* Used the hyperbolic tangent as the activation function
+
+### Find the correct configuration
+
+#### Number of Epochs
+
+This time, we went all the way to TODO 200 Epochs. It started to look good only after 150.
+
+#### Learning rate and Momentum
+
+TODO
+
+#### Hidden neurons
+
+TODO
+
+### Results
+
+#### Confusion Matrix
+
+TODO
+
+#### F-Score
