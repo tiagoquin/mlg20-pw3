@@ -38,7 +38,7 @@ We forgot to use normalization at first. Without it, we observed that the proble
 
 #### Epochs
 
-By running with default parameters `Learning_rate=0.1, Momentum=0.5`, it was clear that the problem didn't needed much epochs. From 200, we went way to to 120, then 80 and finally 65 as we tuned better and better our parameters.
+By running with default parameters `Learning_rate=0.1, Momentum=0.5`, it was clear that the problem didn't needed much epochs. From 200, we went way to 120, then 80 and finally 65 as we tuned better and better our parameters.
 
 #### Learning rate and Momentum
 
@@ -94,11 +94,85 @@ Over 72 files read
 
 #### F-Score
 
-TODO: F1-Socre
+TODO: F1-Score
 
 ## Part 2
 
+> 2. Man vs Woman, using both natural and synthetic voices. Proceed as explained in 0. 
 
+### In brief
+
+Same as the part 1 but the data contain voices of natural and synthetic adults. We don't take this new distinction into account. We only research to differentiate men and women.
+
+### Find the correct configuration
+
+In this section, we'll discuss how we found the correct number of epochs, learning rate and momentum.
+
+#### Features
+
+Same as part 1
+
+#### Normalization
+
+Same as part 1
+
+#### Epochs
+
+200 epochs is also not needed here. We tested again with 200, 120, 80 and 65 epochs and we saw that 65 epochs are also enough to do the job correctly.
+
+#### Learning rate and Momentum
+
+![img](/home/oem/Documents/2019-2020/MLG/learnigRateMomentum2.png)
+
+On the graphs, we can see that we didn't manage to bring the mean squared error low as the part 1 but this is good enough.
+
+Our approach was the same as the part 1: test various values of learning rate by steps of 0.001 and various momentum values by steps of 0.1. 
+
+Here we can see the result of an execution with:
+
+```python
+LEARNING_RATE = 0.014
+MOMENTUM = 0.5
+```
+
+#### Hidden neurons
+
+In this section, we tested with the **k fold cross validation** how much neurons we should put in the hidden layer.
+
+![hiddenNeuron2](/home/oem/Documents/2019-2020/MLG/hiddenNeuron2.png)
+
+The 2, 6, 15 and 30 hidden neurons configurations seem good. The below graph helped to choice the best configuration![learnigRateMomentum2-1](/home/oem/Documents/2019-2020/MLG/learnigRateMomentum2-1.png)
+
+We can see that the **MSE** is also very low for 6, 15 and 30 hidden neurons on the test graph. To avoid a too complex program, we decided to use the 15 hidden neurons configuration
+
+### Results
+
+#### Confusion Matrix
+
+The confusion matrix of the initial configuration was
+
+```
+[[60.  12.]
+ [ 11. 61.]]
+```
+
+With our configuration, we obtain
+
+```
+[[69.  3.]
+ [ 4. 68.]]
+```
+
+* True positif 69.
+* False negative 3.
+* False positive 4.
+* True negative 68.
+
+Over 144 files read
+
+#### F-Score
+
+TODO: F1-Score
 
 ## Part 3
 
