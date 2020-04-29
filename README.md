@@ -4,9 +4,9 @@
 
 # Practical work 03 - Speaker recognition using Neural Networks and Supervised Learning 
 
-## Questions: point 1 et 2
+## Questions: points 1 and 2
 
-We answered the question in the notebook `Answers to questions.ipynb`
+We answered the questions in the notebook `Answers to questions.ipynb`
 
 ## Goal
 
@@ -20,13 +20,13 @@ We answered the question in the notebook `Answers to questions.ipynb`
 
 In this section, we'll make a small overview of the protocol we used.
 
-We inspired ourselves a lot of the `9_model_selection.ipynb` notebook.
+We took inspiration from `9_model_selection.ipynb` notebook.
 
 * Extraction
   * Categorizing the sound by matching patterns in the name files
-    * Applying it a class
-  * Processing sound with MFCC
-  * Extracting features: median, standard deviation,...
+    * Applying a class to each
+  * Processing the sound samples with MFCC
+  * Extracting features: median, standard deviation...
   * Normalizing the features with sklearn's MinMaxScaler
   * Displaying it with pandas (dataframe)
 * Exploring configuration:
@@ -55,7 +55,7 @@ In this section, we'll discuss how we found the correct number of epochs, learni
 
 #### Features
 
-By testing both with one and two features, we didn't saw much difference. It could signify that we are overfitting. We'll see in the following sections that it doesn't look so bad though. We'd need to test deeper to compare.
+By testing both with one and two features, we didn't see much difference. It could signify that we are overfitting. We'll see in the following sections that it doesn't look so bad, though. We'd need to test deeper to compare.
 
 #### Normalization
 
@@ -65,7 +65,7 @@ We forgot to use normalization at first. Without it, we observed that the proble
 
 #### Epochs
 
-By running with default parameters `Learning_rate=0.1, Momentum=0.5`, it was clear that the problem didn't needed much epochs. From 200, we went way to 120, then 80 and finally 65 as we tuned better and better our parameters.
+By running with default parameters `Learning_rate=0.1, Momentum=0.5`, it was clear that the problem didn't need much epochs. From 200, we went way to 120, then 80 and finally 65 as we tuned better and better our parameters.
 
 #### Learning rate and Momentum
 
@@ -84,7 +84,7 @@ MOMENTUM = 0.5
 
 #### Hidden neurons
 
-In this section, we tested with the **k fold cross validation** how much neurons we should put in the hidden layer.
+In this section, we tested with the **k fold cross validation** how many neurons we should put in the hidden layer.
 
 ![png](./mkdown/1/output_34_0.png)
 
@@ -116,7 +116,7 @@ Over 72 files read.
 
 ---
 
-The following is the final we had at the moment of calculating the F-Score
+Here follows the final result we had at the moment of calculating the F-Score
 
 ```
 MSE training:  0.005667937398719769
@@ -145,7 +145,7 @@ F-Score    0.933333  0.927536
 
 ### In brief
 
-Same as the part 1 but the data contain voices of natural and synthetic adults. We don't take this new distinction into account. We only research to differentiate men and women.
+Same as the part 1 but the data contains voices of natural and synthetic adults. We didn't take this new distinction into account. We only differentiated men and women.
 
 ### Find the correct configuration
 
@@ -157,13 +157,13 @@ Same as part 1
 
 #### Epochs
 
-200 epochs is also not needed here. We tested again with 200, 120, 80 and 65 epochs and we saw that 65 epochs are also enough to do the job correctly.
+200 epochs are  not needed here. We tested again with 200, 120, 80 and 65 epochs and we saw that 65 epochs are enough to do the job correctly.
 
 #### Learning rate and Momentum
 
 ![img](./mkdown/2/learnigRateMomentum2.png)
 
-On the graphs, we can see that we didn't manage to bring the mean squared error low as the part 1 but this is good enough.
+On the plots, we can see that we didn't manage to bring the mean squared error as low as in the part 1. But it should be enough to solve the problem.
 
 Our approach was the same as the part 1: test various values of learning rate by steps of 0.001 and various momentum values by steps of 0.1. 
 
@@ -176,11 +176,11 @@ MOMENTUM = 0.5
 
 #### Hidden neurons
 
-In this section, we tested with the **k fold cross validation** how much neurons we should put in the hidden layer.
+In this section, we tested with the **k fold cross validation** how many neurons we should put in the hidden layer.
 
 ![hiddenNeuron2](./mkdown/2/hiddenNeuron2.png)
 
-The 2, 6, 15 and 30 hidden neurons configurations seem good. The below graph helped to choice the best configuration![learnigRateMomentum2-1](./mkdown/2/learnigRateMomentum2-1.png)
+The 2, 6, 15 and 30 hidden neurons configurations seem good. The below graph helped to choose the best configuration![learnigRateMomentum2-1](./mkdown/2/learnigRateMomentum2-1.png)
 
 We can see that the **MSE** is also very low for 6, 15 and 30 hidden neurons on the test graph. To avoid a too complex program, we decided to use the 15 hidden neurons configuration
 
@@ -223,7 +223,7 @@ Confusion matrix:
 
 #### F-Score
 
-We consistently arrive above 0.93 which seems good. Still low epochs, and not using a lot of hidden neurons.
+We consistently arrive above 0.93, which seems good. Still low epochs, and not using a lot of hidden neurons.
 
 ```
               Women       Man
@@ -240,7 +240,7 @@ Since we have 3 categories, we couldn't use Female=1 and Male=-1.
 
 This time we have: Female=[**1**, -1, -1], Male=[-1, **1**, -1], Kid=[-1, -1, **1**]
 
-* We only used the natural voices.
+* We used only the natural voices.
 
 We tried with two features and it was clearly not enough. Here is the confusion matrix as an example:
 
@@ -276,7 +276,7 @@ We have a lot of difficulty at getting stable in the test gradient.
 
 ![hiddenNeuron2](./mkdown/3/output_28_0.png)
 
-This graphs show that our model is not very good. We compromised a bit too much on epochs to stay low. This compromise made us use a higher learning rate and momentum which clearly indicates an overfitting scenario. If you had more time to improve our experience we could explore this way.
+This graphs show that our model is not very good. We compromised a bit too much on epochs to stay low. This compromise made us use a higher learning rate and momentum which clearly indicates an overfitting scenario. If we had more time to improve our experience we could explore this way.
 
 ### Results
 
@@ -302,7 +302,7 @@ Confusion matrix:
 
 For a total of 180 files. 
 
-As we mentioned before, the model isn't really good. But still, we managed to get a lot of children right. The confusion matrix does not look "that bad" than we could expect. Of course, if we run multiple times, the confusion matrix might change a bit. 
+As we mentioned before, the model isn't really good. But still, we managed to get a lot of children right. The confusion matrix does not look "as bad" as we could expect. Of course, if we run it multiple times, the confusion matrix might change a bit. 
 
 #### F-Score
 
@@ -313,6 +313,10 @@ Here is a recap table of our experiment.
 | Precision | 0.837838 | 0.897436 | 0.917431 |
 | Recall    | 0.704545 | 0.945946 | 0.961538 |
 | F-Score   | 0.765432 | 0.921053 | 0.938967 |
+
+Our model seems to handle well children and man voices. But it fails by some huge gap to identify properly women.
+
+We could imagine, however totally an intuition to take with a grain of salt, that some features of male and children voices make them both at the end of some spectrum. And so, that could explain why our model is worse at predicting women voices who go in between.
 
 ## Part 4
 
@@ -330,3 +334,4 @@ In part 1, two features might have been too much. Maybe one was sufficient. In p
 
 In part 3, we clearly had an overfitting problem. We could have solved it with a bit more epochs, a better configuration by exploring lower learning rate value. If we had to do it again we would explore this way.
 
+In general, it would be nice to have a **MSE** lower in the test plots. It was almost always between 0.3 and 0.2.
