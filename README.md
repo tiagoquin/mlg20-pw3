@@ -324,7 +324,7 @@ We could imagine, however totally an intuition to take with a grain of salt, tha
 
 In this part, we used the trained model of the part 3 to see if it would be robust enough. 
 
-We used some adult voices to field test it.
+We used some adult voices to field test it. Thanks to our friends we were very happy to provide vowels sounds in `.wav` files.
 
 ## Conclusion
 
