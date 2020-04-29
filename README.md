@@ -2,6 +2,8 @@
 
 > Simon Mirkovitch, Tiago Povoa Quinteiro 
 
+# Practical work 03 - Speaker recognition using Neural Networks and Supervised Learning 
+
 ## Questions: point 1 et 2
 
 We answered the question in the notebook `Answers to questions.ipynb`
@@ -9,6 +11,10 @@ We answered the question in the notebook `Answers to questions.ipynb`
 ## Goal
 
 > You will be provided with a database of vowels spoken by men, women and children (of 3, 5 and 7 years old). The task will be to train artificial neural networks to recognize the speaker having produced the given sounds and evaluate its performance (e.g., by crossvalidation). 
+
+
+
+> 0. For each of the following experiments, provide a brief description of the number of observations of each class, the features being used to train the model, the procedure (explain) for selecting the final model (e.g., use the model_building.ipynb notebook), the description of the final model and its evaluation (i.e., provide the cross-validation results, the confusion matrix and the F-score). Comment your results. 
 
 ## Protocol
 
@@ -308,11 +314,19 @@ Here is a recap table of our experiment.
 | Recall    | 0.704545 | 0.945946 | 0.961538 |
 | F-Score   | 0.765432 | 0.921053 | 0.938967 |
 
+## Part 4
+
+> 4. Design a final experiment of your choice (e.g., using your own voice). Proceed as explained in 0. 
+
+In this part, we used the trained model of the part 3 to see if it would be robust enough. 
+
+We used some adult voices to field test it.
+
 ## Conclusion
 
 The first goal we had was to reduce the number of epochs: since we had no prior experience of the mystical art of machine learning, we had to try a lot of different values for both the learning rate and momentum. This was really time consuming and so we had to make this first compromise.
 
 In part 1, two features might have been too much. Maybe one was sufficient. In part two, it looked good this way. And in part 3 we had to go up to four features because the problem was way harder. 
 
-In part 3, we clearly had an overfitting problem. We could have solved it with a bit more epochs, a better configuration by exploring lower learning rate values. If we had to do it again we would explore this way.
+In part 3, we clearly had an overfitting problem. We could have solved it with a bit more epochs, a better configuration by exploring lower learning rate value. If we had to do it again we would explore this way.
 
