@@ -122,7 +122,7 @@ Same as part 1
 
 #### Learning rate and Momentum
 
-![img](/home/oem/Documents/2019-2020/MLG/learnigRateMomentum2.png)
+![img](./mkdown/2/learnigRateMomentum2.png)
 
 On the graphs, we can see that we didn't manage to bring the mean squared error low as the part 1 but this is good enough.
 
@@ -139,9 +139,9 @@ MOMENTUM = 0.5
 
 In this section, we tested with the **k fold cross validation** how much neurons we should put in the hidden layer.
 
-![hiddenNeuron2](/home/oem/Documents/2019-2020/MLG/hiddenNeuron2.png)
+![hiddenNeuron2](./mkdown/2/hiddenNeuron2.png)
 
-The 2, 6, 15 and 30 hidden neurons configurations seem good. The below graph helped to choice the best configuration![learnigRateMomentum2-1](/home/oem/Documents/2019-2020/MLG/learnigRateMomentum2-1.png)
+The 2, 6, 15 and 30 hidden neurons configurations seem good. The below graph helped to choice the best configuration![learnigRateMomentum2-1](./mkdown/2/learnigRateMomentum2-1.png)
 
 We can see that the **MSE** is also very low for 6, 15 and 30 hidden neurons on the test graph. To avoid a too complex program, we decided to use the 15 hidden neurons configuration
 
