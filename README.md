@@ -205,16 +205,36 @@ This time, we went all the way to TODO 200 Epochs. It started to look good only 
 
 #### Learning rate and Momentum
 
-TODO
+* Learning rate = 0.01 
+* Momentum = 0.5 
+
+We tried a few values. By adding two more features, it was easier to get the MSE down. Still, we have a high learning so it could cause problems. 
 
 #### Hidden neurons
 
-TODO
+Below, we can see that the test error is consistently  above 0.2. But the blue curve is going down very quickly. This is symptomatic of a scenario of overfitting.![hiddenNeuron2](./mkdown/3/output_27_0.png)
+
+We have a lot of difficulty at getting stable in the test gradient.
+
+![hiddenNeuron2](./mkdown/3/output_28_0.png)
+
+This graphs show that our model is not very good. We compromised a bit much on epochs to stay low. This compromise made us use a higher learning rate and momentum which clearly indicates an overfitting scneario. If you had more time to improve our experience we could explore this way.
 
 ### Results
 
 #### Confusion Matrix
 
-TODO
+```
+MSE training:  0.0013294478379767363
+MSE test:  0.21362182575080285
+Confusion matrix:
+[[ 27.   1.   5.]
+ [  4.  34.   0.]
+ [  8.   1. 102.]]
+```
+
+For a total of 180 files. 
+
+As we mentioned before, the model isn't really good. But still, we managed to get a lot of childrens right. The confusion matrix does not look "that bad" than we could expect. Of course, if we run multiple times, the confusion matrix might change a bit. 
 
 #### F-Score
