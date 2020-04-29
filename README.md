@@ -10,6 +10,27 @@ We answered the question in the notebook `Answers to questions.ipynb`
 
 > You will be provided with a database of vowels spoken by men, women and children (of 3, 5 and 7 years old). The task will be to train artificial neural networks to recognize the speaker having produced the given sounds and evaluate its performance (e.g., by crossvalidation). 
 
+## Protocol
+
+In this section, we'll make a small overview of the protocol we used.
+
+We inspired ourselves a lot of the `9_model_selection.ipynb` notebook.
+
+* Extraction
+  * Categorizing the sound by matching patterns in the name files
+    * Applying it a class
+  * Processing sound with MFCC
+  * Extracting features: median, standard deviation,...
+  * Normalizing the features with sklearn's MinMaxScaler
+  * Displaying it with pandas (dataframe)
+* Exploring configuration:
+  * Running some tests to find from where the epochs start to lower
+  * Finding a learning rate, momentum and a number of hidden neurons
+* Evaluating
+  * Analyzing the plots
+  * The confusion matrix
+  * and finally evaluating F-Score and other metrics
+
 ## Part 1
 
 > 1. Man vs Woman. Use only the natural voices of men and women to train a neural network that recognizes the gender of the speaker. 
@@ -85,16 +106,32 @@ And with the final tuning we arrived at:
  [ 2. 34.]]
 ```
 
-- True positif 36.
-- False negative 0.
-- False positive 3.
-- True negative 33.
+Over 72 files read.
 
-Over 72 files read
+---
+
+The following is the final we had at the moment of calculating the F-Score
+
+```
+MSE training:  0.005667937398719769
+MSE test:  0.22138032353091514
+Confusion matrix:
+[[35.  1.]
+ [ 4. 32.]]
+```
 
 #### F-Score
 
-TODO: F1-Score
+As we can see in the table below, our scores are very close to 1.0. And we still stayed low on epochs.
+
+```
+              Women       Man
+Precision  0.972222  0.888889
+Recall     0.897436  0.969697
+F-Score    0.933333  0.927536
+```
+
+>  Source on how to calculate those values: https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/
 
 ## Part 2
 
@@ -108,11 +145,7 @@ Same as the part 1 but the data contain voices of natural and synthetic adults. 
 
 In this section, we'll discuss how we found the correct number of epochs, learning rate and momentum.
 
-#### Features
-
-Same as part 1
-
-#### Normalization
+#### Features and Normalization
 
 Same as part 1
 
@@ -170,9 +203,28 @@ With our configuration, we obtain
 
 Over 144 files read
 
+---
+
+The confusion matrix at the moment we calculated the F-Score:
+
+```
+MSE training:  0.03475438926340483
+MSE test:  0.1544948951021063
+Confusion matrix:
+[[69.  3.]
+ [ 5. 67.]]
+```
+
 #### F-Score
 
-TODO: F1-Score
+We consistently arrive above 0.93 which seems good. Still low epochs, and not using a lot of hidden neurons.
+
+```
+              Women       Man
+Precision  0.958333  0.930556
+Recall     0.932432  0.957143
+F-Score    0.945205  0.943662
+```
 
 ## Part 3
 
@@ -201,7 +253,7 @@ We tried with two features and it was clearly not enough. Here is the confusion 
 
 #### Number of Epochs
 
-This time, we went all the way to TODO 200 Epochs. It started to look good only after 150.
+This time, we went all the way to 200 Epochs. It started to look good only after 150.
 
 #### Learning rate and Momentum
 
@@ -218,23 +270,49 @@ We have a lot of difficulty at getting stable in the test gradient.
 
 ![hiddenNeuron2](./mkdown/3/output_28_0.png)
 
-This graphs show that our model is not very good. We compromised a bit much on epochs to stay low. This compromise made us use a higher learning rate and momentum which clearly indicates an overfitting scneario. If you had more time to improve our experience we could explore this way.
+This graphs show that our model is not very good. We compromised a bit too much on epochs to stay low. This compromise made us use a higher learning rate and momentum which clearly indicates an overfitting scenario. If you had more time to improve our experience we could explore this way.
 
 ### Results
 
 #### Confusion Matrix
 
 ```
+Run A
 MSE training:  0.0013294478379767363
 MSE test:  0.21362182575080285
 Confusion matrix:
 [[ 27.   1.   5.]
  [  4.  34.   0.]
  [  8.   1. 102.]]
+ --------------
+Run B
+MSE training:  0.0031006361188264196
+MSE test:  0.21122603197906184
+Confusion matrix:
+[[ 31.   2.   4.]
+ [  4.  35.   0.]
+ [  9.   0. 100.]]
 ```
 
 For a total of 180 files. 
 
-As we mentioned before, the model isn't really good. But still, we managed to get a lot of childrens right. The confusion matrix does not look "that bad" than we could expect. Of course, if we run multiple times, the confusion matrix might change a bit. 
+As we mentioned before, the model isn't really good. But still, we managed to get a lot of children right. The confusion matrix does not look "that bad" than we could expect. Of course, if we run multiple times, the confusion matrix might change a bit. 
 
 #### F-Score
+
+Here is a recap table of our experiment. 
+
+|           | Women    | Man      | Children |
+| --------- | -------- | -------- | -------- |
+| Precision | 0.837838 | 0.897436 | 0.917431 |
+| Recall    | 0.704545 | 0.945946 | 0.961538 |
+| F-Score   | 0.765432 | 0.921053 | 0.938967 |
+
+## Conclusion
+
+The first goal we had was to reduce the number of epochs: since we had no prior experience of the mystical art of machine learning, we had to try a lot of different values for both the learning rate and momentum. This was really time consuming and so we had to make this first compromise.
+
+In part 1, two features might have been too much. Maybe one was sufficient. In part two, it looked good this way. And in part 3 we had to go up to four features because the problem was way harder. 
+
+In part 3, we clearly had an overfitting problem. We could have solved it with a bit more epochs, a better configuration by exploring lower learning rate values. If we had to do it again we would explore this way.
+
