@@ -339,7 +339,7 @@ Confusion matrix:
  [  6.   0. 101.]]
 ```
 
-It seems our model is robust enough.
+It seems our model has a biais. Been trained with the new data create this and now it can sort all men data easy. That's not normal. The data should be tested after the model has already been trained. We misinterpreted how we were supposed to do this step.
 
 #### F-Score
 
