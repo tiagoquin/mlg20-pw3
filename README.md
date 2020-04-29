@@ -324,7 +324,32 @@ We could imagine, however totally an intuition to take with a grain of salt, tha
 
 In this part, we used the trained model of the part 3 to see if it would be robust enough. 
 
-We used some adult voices to field test it. Thanks to our friends we were very happy to provide vowels sounds in `.wav` files.
+We used some new adult voices of men to field test it. Thanks to our friends we were very happy to provide vowels sounds in `.wav` files.
+
+### Results
+
+#### Confusion Matrix
+
+```
+MSE training:  0.0028084879964782017
+MSE test:  0.1311319914970117
+Confusion matrix:
+[[ 31.   0.   5.]
+ [  0.  27.   0.]
+ [  6.   0. 101.]]
+```
+
+It seems our model is robust enough.
+
+#### F-Score
+
+Here is a recap table of our experiment. 
+
+|           | Women    | Man  | Children |
+| --------- | -------- | ---- | -------- |
+| Precision | 0.861111 | 1.0  | 0.943925 |
+| Recall    | 0.837838 | 1.0  | 0.952830 |
+| F-Score   | 0.849315 | 1.0  | 0.948357 |
 
 ## Conclusion
 
